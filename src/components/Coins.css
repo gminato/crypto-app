@@ -13,14 +13,17 @@
     margin: 2rem 1rem;
     padding: .7rem 1rem;
     font-weight: 700;
+    min-height: 2rem;
+    overflow: hidden;
 }
 .coin-name{
     margin-left: -4rem;
 }
 .coin-row:hover{
-    transform: scale(1.04);
+    transform: scale(1.01);
     transition: .3s ease-in-out;
     cursor: pointer;
+    overflow: hidden;
 }
 
 img{
@@ -31,6 +34,23 @@ img{
 .img-symbol{
     display: flex;
     align-items: center;
+}
+
+.shimmer {
+    background: linear-gradient(to right, #202020 4%, #444444 25%, #202020 36%);
+    background-size: 1000px 100%;
+    position: relative;
+    animation: shimmer 2s infinite linear forwards;
+    overflow: hidden;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
 }
 
 @media screen and (max-width: 720px) {

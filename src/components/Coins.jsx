@@ -4,9 +4,17 @@ import { Link } from 'react-router-dom';
 import './Coins.css';
 import Coin from '../routes/Coin';
 
-const Coins = (props) => {
+const Coins = ({coins,loading}) => {
+
+  if (loading) {
+    return Array(10)
+      .fill()
+      .map((_, index) => <CoinItem key={index} loading={true} />);
+  }
+  
   return (
     <div className='container'>
+      {console.log(coins,loading)}
       <div>
         <div className='heading'>
           <p>#</p>
@@ -16,13 +24,15 @@ const Coins = (props) => {
           <p className='hide-mobile'>Volume(24h)</p>
           <p className='hide-mobile'>Market Cap</p>
         </div>
-        {props.coins.map((coins) => {
+
+        {coins.map((coins) => {
           return (
             <Link to={`/coin/${coins.id}`} element={<Coin />} key={coins.id}>
-              <CoinItem coins={coins} />
+              <CoinItem coins={coins} loading={false}/>
             </Link>
           );
         })}
+
       </div>
     </div>
   );

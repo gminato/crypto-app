@@ -11,6 +11,7 @@ function App() {
 
   //using use state hooks
   const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //using useEffect hook to fetch coin data
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
       .then((response) => {
         setCoins(response.data);
         console.log(response.data[0]);
+        setLoading(false);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -27,7 +29,7 @@ function App() {
       <Navbar />
       <Routes>
         {/* using props to send coin response and router to home page*/}
-        <Route path='/' element={<Coins coins={coins} />} />
+        <Route path='/' element={<Coins coins={coins} loading={loading}/>} />
         {/* url page to coin */}
         <Route path='/coin' element={<Coin />}>
           {/* It will route to specific coin id */}
